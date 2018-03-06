@@ -1,13 +1,13 @@
 ---
 layout: post
-title: 这是一篇博客文章模板
-date: 2015-3-02
+title: 我的第一篇博客
+date: 2018-3-06
 categories: blog
-tags: [标签一,标签二]
-description: 文章金句。
+tags: 温而思进取
+description: Hello大家好。
 ---
 
-这里是博客正文。
+欢迎各位同行兴趣相同的一起交流讨论学习，如某篇文章哪处说的不合理，还请指正！
 
 
 
