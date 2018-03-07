@@ -29,43 +29,67 @@ description: 大数据这么火，如何搭建一个最简单的集群！
 	`vim /etc/sysconfig/network-scripts/ifcfg-eth0`
 
 ## 1.4 修改主机名和IP的映射关系 ##
+
     vim /etc/hosts
 
 ## 1.5 关闭防火墙 ##
 
-####查看防火墙状态
+####查看防火墙状态 ####
+
 	service iptables status
-####关闭防火墙
+
+####关闭防火墙 ####
+
 	service iptables stop
-####查看防火墙开机启动状态
+
+####查看防火墙开机启动状态 ####
+
 	chkconfig iptables --list
-####关闭防火墙开机启动
+
+####关闭防火墙开机启动 ####
+
 	chkconfig iptables off
 
-## 1.6 重启Linux
+## 1.6 重启Linux ##
 	reboot
 
 # 2 安装JDK
-####创建文件夹
+
+####创建文件夹 ####
+
 	mkdir /usr/java
+
 ####解压
+
 	tar -zxvf jdk-8u162-linux-x64.tar.gz -C /usr/java/
-####将java添加到环境变量中
+
+####将java添加到环境变量中 ####
+
 	vim /etc/profile
-####在文件的最后添加
+
+####在文件的最后添加 ####
+
 	export JAVA_HOME=/usr/java/jdk1.8.0_162
 	export PATH=$PATH:$JAVA_HOME/bin
-####刷新配置
+
+####刷新配置 ####
+
 	source /etc/profile
 
-#3 安装hadoop2.8.3
+#3 安装hadoop2.8.3 #
 
-##3.1 配置hadoop
-####配置hadoop-env.sh
+##3.1 配置hadoop ##
+
+####配置hadoop-env.sh ####
+
 	vim hadoop-env.sh
-####修改JAVA_HOME
+
+####修改JAVA_HOME ####
+
 	export JAVA_HOME=/usr/java/jdk1.7.0_65
-####配置core-site.xml
+
+####配置core-site.xml ####
+
 	<!-- 制定HDFS的（NameNode）的地址 -->
 	<property>
 		<name>fs.defaultFS</name>
@@ -76,13 +100,17 @@ description: 大数据这么火，如何搭建一个最简单的集群！
 		<name>hadoop.tmp.dir</name>
 		<value>/itcast/hadoop-2.4.1/tmp</value>
 	</property>
-####配置hdfs-site.xml
+
+####配置hdfs-site.xml ####
+
 	<!-- 指定HDFS副本的数量 -->
 	<property>
 		<name>dfs.replication</name>
 		<value>1</value>
     </property>
-####配置yarn-site.xml
+
+####配置yarn-site.xml ####
+
 	<!-- 指定YARN的老大（ResourceManager）的地址 -->
 	<property>
 		<name>yarn.resourcemanager.hostname</name>
@@ -93,7 +121,9 @@ description: 大数据这么火，如何搭建一个最简单的集群！
 		<name>yarn.nodemanager.aux-services</name>
 		<value>mapreduce_shuffle</value>
     </property>
-##3.2 将hadoop添加到环境变量
+
+##3.2 将hadoop添加到环境变量 ##
+
 	vim /etc/proflie
 	export JAVA_HOME=/usr/java/jdk1.8.0_162
 	export HADOOP_HOME=/itcast/hadoop-2.8.3
@@ -101,15 +131,20 @@ description: 大数据这么火，如何搭建一个最简单的集群！
 
 	source /etc/profile
 
-##3.3 格式化namenode
+##3.3 格式化namenode ##
+
 	hdfs namenode -format (hadoop namenode -format)
-##3.4 启动hadoop
+
+##3.4 启动hadoop ##
+
 	先启动HDFS
 	sbin/start-dfs.sh
 	
 	再启动YARN
 	sbin/start-yarn.sh
-##3.5 验证是否启动成功
+
+##3.5 验证是否启动成功 ##
+
 	使用jps命令验证
 	27408 NameNode
 	28218 Jps
@@ -118,12 +153,16 @@ description: 大数据这么火，如何搭建一个最简单的集群！
 	27803 ResourceManager
 	27512 DataNode
 	
-####用浏览器打开以下页面测试搭建是否成功
+####用浏览器打开以下页面测试搭建是否成功 ####
+
 	http://192.168.8.118:50070 （HDFS管理界面）
 	http://192.168.8.118:8088 （MR管理界面）
-#4 配置ssh免登录
+
+#4 配置ssh免登录 #
+
 	#生成ssh免登陆密钥
 	#进入到我的home目录
+
 	cd ~/.ssh
 
 	ssh-keygen -t rsa （按四下回车）
