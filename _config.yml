@@ -55,7 +55,7 @@ comments :
       short_name : http-www-gdutxwt-site-2 # 填写你的 disqus id
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:  # 填写你  google_analytics id
+google_analytics: UA-115369975-1 # 填写你  google_analytics id
 google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
