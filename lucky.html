@@ -54,7 +54,7 @@
                 </div>
                 <canvas id="canvas" width="1100" height="680"></canvas>
             </div>
-            <audio src="那些年.mp3" autoplay="autoplay"></audio>
+            <audio src="那些年.mp3" autoplay="autoplay" id="audio" name="audio"></audio>
         </div>
     
     <script>
@@ -63,7 +63,7 @@
     <script>
     (function(){
         var canvas = $('#canvas');
-
+		var audio = $('#audio');
         if (!canvas[0].getContext) {
             $("#error").show();
             return false;
@@ -117,6 +117,7 @@
         var hold = 1;
 
         canvas.click(function(e) {
+			audio.play();
             var offset = canvas.offset(), x, y;
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
